@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inferno Tech</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<header class="navbar">
+    <div class="container navbar-inner">
+  <div class="logo">Intellica</div>
+  <nav class="nav-links" id="nav-links">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#products">Products</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="hamburger" onclick="toggleMenu()">
+    <i class="fas fa-bars"></i>
+  </div>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <canvas id="hero-canvas"></canvas> 
+  <div class="hero-content">
+    <h1 class="hero-title">Building the Future with AI</h1>
+    <p class="hero-subtitle">Education | Gaming | AR-VR</p>
+    <a href="#contact" class="cta-button">Get in Touch</a>
+  </div>
+</section>
+
+<!-- About Us -->
+<section class="about fade-in-section" id="about">
+  <div class="container">
+    <h2>About Us</h2>
+    <p>At Intellica Tech, we are not just adapting to the future — we are engineering it.
+
+        We specialize in crafting AI-driven solutions that redefine the boundaries of Education, Gaming, Augmented Reality, and Virtual Reality.
+        
+        Our mission is simple: to empower the next generation with intelligent products that create immersive, adaptive, and limitless experiences.
+        
+        From intelligent learning platforms to breathtaking virtual worlds, we are building technologies that transform imagination into reality.
+        
+        Innovation is in our DNA — and the future is just getting started.
+        
+        </p>
+  </div>
+</section>
+
+<!-- Our Products -->
+<section class="products fade-in-section" id="products">
+  <div class="container">
+    <h2>Our Products</h2>
+    <div class="product-grid">
+      <div class="product-box">
+        <img src="product1.jpg" alt="AI Learning Platforms" class="product-img">
+        <h3>AI Learning Platforms</h3>
+        <p>Transforming education with intelligent, adaptive learning systems that personalize knowledge delivery.</p>
+        <a href="#" class="learn-more">Learn More</a>
+      </div>
+      <div class="product-box">
+        <img src="product2.jpg" alt="Gaming" class="product-img">
+        <h3>Immersive Gaming</h3>
+        <p>Creating breathtaking gaming experiences using AI to craft smarter NPCs, better worlds, and dynamic storytelling.</p>
+        <a href="#" class="learn-more">Learn More</a>
+      </div>
+      <div class="product-box">
+        <img src="product3.jpg" alt="AR/VR" class="product-img">
+        <h3>AR & VR Innovations</h3>
+        <p>Bringing dreams into reality with stunning AR/VR applications, revolutionizing how users interact with digital environments.</p>
+        <a href="#" class="learn-more">Learn More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Us -->
+<section class="contact fade-in-section" id="contact">
+  <div class="container">
+    <h2>Contact Us</h2>
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit" class="submit-btn">Send</button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container footer-content">
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#products">Products</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <p>© 2025 Inferno Tech. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+    function toggleMenu() {
+      const navLinks = document.getElementById('nav-links');
+      const hamburger = document.querySelector('.hamburger i'); /* 🔴 */
+      navLinks.classList.toggle('active');
+    
+      // 🔴 Switch icon when menu is open
+      if (navLinks.classList.contains('active')) {
+        hamburger.classList.remove('fa-bars');
+        hamburger.classList.add('fa-times');
+      } else {
+        hamburger.classList.remove('fa-times');
+        hamburger.classList.add('fa-bars');
+      }
+    }
+    const fadeSections = document.querySelectorAll('.fade-in-section');
+
+    function checkFade() {
+      fadeSections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= window.innerHeight - 100) {
+          section.classList.add('visible');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', checkFade);
+    window.addEventListener('load', checkFade);
+    </script>
+    <script>
+        const canvas = document.getElementById('hero-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let bubbles = [];
+        
+        function resizeCanvas() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
+        
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        
+        for (let i = 0; i < 50; i++) {
+          bubbles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            r: Math.random() * 4 + 1,
+            d: Math.random() * 0.5 + 0.5
+          });
+        }
+        
+        function drawBubbles() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.3)'; // Light white circles
+        
+          bubbles.forEach(b => {
+            ctx.beginPath();
+            ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+            ctx.fill();
+          });
+        
+          moveBubbles();
+        }
+        
+        function moveBubbles() {
+          bubbles.forEach(b => {
+            b.y -= b.d;
+            if (b.y < -10) {
+              b.y = canvas.height + 10;
+              b.x = Math.random() * canvas.width;
+            }
+          });
+        }
+        
+        function animate() {
+          drawBubbles();
+          requestAnimationFrame(animate);
+        }
+        
+        animate();
+        </script>
+        
+</body>
+</html>
